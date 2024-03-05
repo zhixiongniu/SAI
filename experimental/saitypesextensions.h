@@ -96,5 +96,15 @@ typedef enum _sai_dash_encapsulation_t
 
 } sai_dash_encapsulation_t;
 
+typedef enum _sai_dash_bulk_get_filter_op_t
+{
+    SAI_DASH_BULK_GET_FILTER_OP_EQUAL,
+    SAI_DASH_BULK_GET_FILTER_OP_LESS_THAN,
+    SAI_DASH_BULK_GET_FILTER_OP_LESS_THAN_OR_EQUAL,
+    SAI_DASH_BULK_GET_FILTER_OP_GREATER_THAN,
+    SAI_DASH_BULK_GET_FILTER_OP_GREATER_THAN_OR_EQUAL,
+
+} sai_dash_bulk_get_filter_op_t;
+
 #endif /* __SAITYPESEXTENSIONS_H_ */
 
