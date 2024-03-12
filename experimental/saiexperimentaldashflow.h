@@ -46,19 +46,19 @@ typedef struct _sai_flow_entry_t
     sai_object_id_t switch_id;
 
     /**
-     * @brief Exact matched key dip
+     * @brief Exact matched key dst_ip
      */
-    sai_ip_address_t dip;
+    sai_ip_address_t dst_ip;
 
     /**
-     * @brief Exact matched key sip
+     * @brief Exact matched key src_ip
      */
-    sai_ip_address_t sip;
+    sai_ip_address_t src_ip;
 
     /**
      * @brief Exact matched key protocol
      */
-    sai_uint16_t protocol;
+    sai_uint8_t protocol;
 
     /**
      * @brief Exact matched key src_port
@@ -73,14 +73,12 @@ typedef struct _sai_flow_entry_t
     /**
      * @brief Exact matched key direction
      */
-    sai_uint32_t direction;
+    sai_uint16_t direction;
 
     /**
-     * @brief Exact matched key eni_id
-     *
-     * @objects SAI_OBJECT_TYPE_ENI
+     * @brief Exact matched key eni_addr
      */
-    sai_object_id_t eni_id;
+    sai_mac_t eni_addr;
 
 } sai_flow_entry_t;
 
@@ -126,16 +124,16 @@ typedef enum _sai_flow_entry_attr_t
     /**
      * @brief Action flow_entry_action parameter FLOW_BIDIRECTIONAL
      *
-     * @type sai_uint32_t
+     * @type bool
      * @flags CREATE_AND_SET
-     * @default 0
+     * @default false
      */
     SAI_FLOW_ENTRY_ATTR_FLOW_BIDIRECTIONAL,
 
     /**
      * @brief Action flow_entry_action parameter FLOW_DIRECTION
      *
-     * @type sai_uint32_t
+     * @type sai_uint8_t
      * @flags CREATE_AND_SET
      * @default 0
      */
@@ -144,56 +142,174 @@ typedef enum _sai_flow_entry_attr_t
     /**
      * @brief Action flow_entry_action parameter FLOW_REVERSE_KEY
      *
-     * @type sai_uint32_t
+     * @type sai_uint64_t
      * @flags CREATE_AND_SET
      * @default 0
      */
     SAI_FLOW_ENTRY_ATTR_FLOW_REVERSE_KEY,
 
     /**
-     * @brief Action flow_entry_action parameter FLOW_POLICY_RESULT
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_FLOW_ENTRY_ATTR_FLOW_POLICY_RESULT,
-
-    /**
-     * @brief Action flow_entry_action parameter FLOW_DEST_PA
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_FLOW_ENTRY_ATTR_FLOW_DEST_PA,
-
-    /**
-     * @brief Action flow_entry_action parameter FLOW_METERING_CLASS
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_FLOW_ENTRY_ATTR_FLOW_METERING_CLASS,
-
-    /**
-     * @brief Action flow_entry_action parameter FLOW_REWRITE_INFO
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_FLOW_ENTRY_ATTR_FLOW_REWRITE_INFO,
-
-    /**
      * @brief Action flow_entry_action parameter FLOW_VENDOR_METADATA
      *
+     * @type sai_u8_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_FLOW_ENTRY_ATTR_FLOW_VENDOR_METADATA,
+
+    /**
+     * @brief Action flow_entry_action parameter FLOW_TARGET_SERVER
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_ATTR_FLOW_TARGET_SERVER,
+
+    /**
+     * @brief Action flow_entry_action parameter FLOW_ENTRY_FILTER
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_ATTR_FLOW_ENTRY_FILTER,
+
+    /**
+     * @brief Action flow_entry_action parameter VNI
+     *
      * @type sai_uint32_t
      * @flags CREATE_AND_SET
      * @default 0
      */
-    SAI_FLOW_ENTRY_ATTR_FLOW_VENDOR_METADATA,
+    SAI_FLOW_ENTRY_ATTR_VNI,
+
+    /**
+     * @brief Action flow_entry_action parameter DEST_VNET_VNI
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_ATTR_DEST_VNET_VNI,
+
+    /**
+     * @brief Action flow_entry_action parameter UNDERLAY_SIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_UNDERLAY_SIP,
+
+    /**
+     * @brief Action flow_entry_action parameter UNDERLAY_DIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_UNDERLAY_DIP,
+
+    /**
+     * @brief Action flow_entry_action parameter UNDERLAY_SMAC
+     *
+     * @type sai_mac_t
+     * @flags CREATE_AND_SET
+     * @default 0:0:0:0:0:0
+     */
+    SAI_FLOW_ENTRY_ATTR_UNDERLAY_SMAC,
+
+    /**
+     * @brief Action flow_entry_action parameter UNDERLAY_DMAC
+     *
+     * @type sai_mac_t
+     * @flags CREATE_AND_SET
+     * @default 0:0:0:0:0:0
+     */
+    SAI_FLOW_ENTRY_ATTR_UNDERLAY_DMAC,
+
+    /**
+     * @brief Action flow_entry_action parameter DASH_ENCAPSULATION
+     *
+     * @type sai_dash_encapsulation_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_ENCAPSULATION_INVALID
+     */
+    SAI_FLOW_ENTRY_ATTR_DASH_ENCAPSULATION,
+
+    /**
+     * @brief Action flow_entry_action parameter ORIGINAL_OVERLAY_SIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_ORIGINAL_OVERLAY_SIP,
+
+    /**
+     * @brief Action flow_entry_action parameter ORIGINAL_OVERLAY_DIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_ORIGINAL_OVERLAY_DIP,
+
+    /**
+     * @brief Action flow_entry_action parameter DEST_MAC
+     *
+     * @type sai_mac_t
+     * @flags CREATE_AND_SET
+     * @default 0:0:0:0:0:0
+     */
+    SAI_FLOW_ENTRY_ATTR_DEST_MAC,
+
+    /**
+     * @brief Action flow_entry_action parameter SIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_SIP,
+
+    /**
+     * @brief Action flow_entry_action parameter DIP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_DIP,
+
+    /**
+     * @brief Action flow_entry_action parameter SIP_MASK
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_SIP_MASK,
+
+    /**
+     * @brief Action flow_entry_action parameter DIP_MASK
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_ATTR_DIP_MASK,
+
+    /**
+     * @brief Action flow_entry_action parameter METER_CLASS
+     *
+     * @type sai_uint16_t
+     * @flags CREATE_AND_SET
+     * @isvlan false
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_ATTR_METER_CLASS,
 
     /**
      * @brief IP address family for resource accounting
@@ -222,13 +338,13 @@ typedef enum _sai_flow_entry_attr_t
  */
 typedef enum _sai_flow_entry_bulk_get_filter_t
 {
-    /** Bulk get filter key word for sai_ip_address_t dip */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DIP,
+    /** Bulk get filter key word for sai_ip_address_t dst_ip */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DST_IP,
 
-    /** Bulk get filter key word for sai_ip_address_t sip */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_SIP,
+    /** Bulk get filter key word for sai_ip_address_t src_ip */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_SRC_IP,
 
-    /** Bulk get filter key word for sai_uint16_t protocol */
+    /** Bulk get filter key word for sai_uint8_t protocol */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_PROTOCOL,
 
     /** Bulk get filter key word for sai_uint16_t src_port */
@@ -237,11 +353,11 @@ typedef enum _sai_flow_entry_bulk_get_filter_t
     /** Bulk get filter key word for sai_uint16_t dst_port */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DST_PORT,
 
-    /** Bulk get filter key word for sai_uint32_t direction */
+    /** Bulk get filter key word for sai_uint16_t direction */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DIRECTION,
 
-    /** Bulk get filter key word for sai_object_id_t eni_id */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_ENI_ID,
+    /** Bulk get filter key word for sai_mac_t eni_addr */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_ENI_ADDR,
 
     /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_TABLE_ID */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_TABLE_ID,
@@ -261,20 +377,59 @@ typedef enum _sai_flow_entry_bulk_get_filter_t
     /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_REVERSE_KEY */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_REVERSE_KEY,
 
-    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_POLICY_RESULT */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_POLICY_RESULT,
-
-    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_DEST_PA */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_DEST_PA,
-
-    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_METERING_CLASS */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_METERING_CLASS,
-
-    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_REWRITE_INFO */
-    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_REWRITE_INFO,
-
     /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_VENDOR_METADATA */
     SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_VENDOR_METADATA,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_TARGET_SERVER */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_TARGET_SERVER,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_FLOW_ENTRY_FILTER */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_FLOW_ENTRY_FILTER,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_VNI */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_VNI,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_DEST_VNET_VNI */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DEST_VNET_VNI,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_UNDERLAY_SIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_UNDERLAY_SIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_UNDERLAY_DIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_UNDERLAY_DIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_UNDERLAY_SMAC */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_UNDERLAY_SMAC,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_UNDERLAY_DMAC */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_UNDERLAY_DMAC,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_DASH_ENCAPSULATION */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DASH_ENCAPSULATION,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_ORIGINAL_OVERLAY_SIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_ORIGINAL_OVERLAY_SIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_ORIGINAL_OVERLAY_DIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_ORIGINAL_OVERLAY_DIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_DEST_MAC */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DEST_MAC,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_SIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_SIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_DIP */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DIP,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_SIP_MASK */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_SIP_MASK,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_DIP_MASK */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_DIP_MASK,
+
+    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_METER_CLASS */
+    SAI_FLOW_ENTRY_BULK_GET_FILTER_T_METER_CLASS,
 
 } sai_flow_entry_bulk_get_filter_t;
 
@@ -283,22 +438,38 @@ typedef enum _sai_flow_entry_bulk_get_filter_t
  */
 typedef enum _sai_flow_entry_bulk_get_op_t
 {
-    /**  Indicate the last OP of Bulk Get */
+    /** Indicate the last operation of the bulk get */
     SAI_FLOW_ENTRY_BULK_GET_OP_LAST_ITEM,
 
-    /** Operation parameter for normal return */
-    SAI_FLOW_ENTRY_BULK_GET_OP_NORMAL_RETURN,
+    /** Operation to compare the value is equal */
+    SAI_FLOW_ENTRY_BULK_GET_OP_EQUAL_TO,
 
-    /** Operation parameter for GRPC return (server IP address) */
-    SAI_FLOW_ENTRY_BULK_GET_OP_GRPC_SERVER_IP,
+    /** Operation to compare the value is greater than */
+    SAI_FLOW_ENTRY_BULK_GET_OP_GREATER_THAN,
 
-    /**  Operation parameter for GRPC return (server port) */
-    SAI_FLOW_ENTRY_BULK_GET_OP_GRPC_SERVER_PORT,
+    /** Operation to compare the value is greater than or equal to */
+    SAI_FLOW_ENTRY_BULK_GET_OP_GREATER_THAN_OR_EQUAL_TO,
 
-    /** Operation parameter for get filter operator */
-    SAI_FLOW_ENTRY_BULK_GET_OP_FILTER_OP,
+    /** Operation to compare the value is less than */
+    SAI_FLOW_ENTRY_BULK_GET_OP_LESS_THAN,
+
+    /** Operation to compare the value is less than or equal to */
+    SAI_FLOW_ENTRY_BULK_GET_OP_LESS_THAN_OR_EQUAL_TO,
 
 } sai_flow_entry_bulk_get_op_t;
+
+typedef struct _sai_flow_entry_target_server_data_t
+{
+    sai_ip_address_t server_ip;
+    sai_uint16_t server_port;
+} sai_flow_entry_target_server_data_t;
+
+typedef struct _sai_flow_entry_filter_data_t
+{
+    sai_flow_entry_bulk_get_filter_t filter;
+    sai_flow_entry_bulk_get_op_t op;
+    sai_uint64_t value;
+} sai_flow_entry_filter_data_t;
 
 /**
  * @brief Attribute ID for dash_flow_flow_table
