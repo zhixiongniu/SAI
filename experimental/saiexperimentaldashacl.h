@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHACL_H_)
 #define __SAIEXPERIMENTALDASHACL_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_ACL SAI - Extension specific API definitions

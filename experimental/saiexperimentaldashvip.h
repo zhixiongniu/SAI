@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHVIP_H_)
 #define __SAIEXPERIMENTALDASHVIP_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_VIP SAI - Extension specific API definitions

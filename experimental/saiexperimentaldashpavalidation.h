@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHPAVALIDATION_H_)
 #define __SAIEXPERIMENTALDASHPAVALIDATION_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_PA_VALIDATION SAI - Extension specific API definitions

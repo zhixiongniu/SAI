@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHOUTBOUNDCATOPA_H_)
 #define __SAIEXPERIMENTALDASHOUTBOUNDCATOPA_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_OUTBOUND_CA_TO_PA SAI - Extension specific API definitions

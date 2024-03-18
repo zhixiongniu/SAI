@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHVNET_H_)
 #define __SAIEXPERIMENTALDASHVNET_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_VNET SAI - Extension specific API definitions

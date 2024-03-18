@@ -70,6 +70,10 @@ typedef enum _sai_object_type_extensions_t
 
     SAI_OBJECT_TYPE_VIP_ENTRY,
 
+    SAI_OBJECT_TYPE_FLOW_TABLE,
+
+    SAI_OBJECT_TYPE_FLOW_ENTRY,
+
     /* Add new experimental object types above this line */
 
     SAI_OBJECT_TYPE_EXTENSIONS_RANGE_END
@@ -96,15 +100,56 @@ typedef enum _sai_dash_encapsulation_t
 
 } sai_dash_encapsulation_t;
 
-typedef enum _sai_dash_bulk_get_filter_op_t
+typedef enum _sai_bulk_get_filter_op_t
 {
-    SAI_DASH_BULK_GET_FILTER_OP_EQUAL,
-    SAI_DASH_BULK_GET_FILTER_OP_LESS_THAN,
-    SAI_DASH_BULK_GET_FILTER_OP_LESS_THAN_OR_EQUAL,
-    SAI_DASH_BULK_GET_FILTER_OP_GREATER_THAN,
-    SAI_DASH_BULK_GET_FILTER_OP_GREATER_THAN_OR_EQUAL,
+    /** Operation to compare the value is equal */
+    SAI_BULK_GET_FILTER_OP_EQUAL_TO,
 
-} sai_dash_bulk_get_filter_op_t;
+    /** Operation to compare the value is greater than */
+    SAI_BULK_GET_FILTER_OP_GREATER_THAN,
+
+    /** Operation to compare the value is greater than or equal to */
+    SAI_BULK_GET_FILTER_OP_GREATER_THAN_OR_EQUAL_TO,
+
+    /** Operation to compare the value is less than */
+    SAI_BULK_GET_FILTER_OP_LESS_THAN,
+
+    /** Operation to compare the value is less than or equal to */
+    SAI_BULK_GET_FILTER_OP_LESS_THAN_OR_EQUAL_TO,
+
+} sai_bulk_get_filter_op_t;
+
+typedef enum _sai_dash_tunnel_dscp_mode_t
+{
+    SAI_DASH_TUNNEL_DSCP_MODE_INVALID,
+
+    SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL,
+
+    SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL,
+
+} sai_dash_tunnel_dscp_mode_t;
+
+typedef enum _sai_dash_flow_action_t
+{
+    SAI_DASH_FLOW_ACTION_NONE,
+
+} sai_dash_flow_action_t;
+
+typedef enum _sai_dash_flow_enabled_key_t
+{
+    SAI_DASH_FLOW_ENABLED_KEY_NONE,
+
+    SAI_DASH_FLOW_ENABLED_KEY_PROTOCOL,
+
+    SAI_DASH_FLOW_ENABLED_KEY_SRC_IP,
+
+    SAI_DASH_FLOW_ENABLED_KEY_DST_IP,
+
+    SAI_DASH_FLOW_ENABLED_KEY_SRC_PORT,
+
+    SAI_DASH_FLOW_ENABLED_KEY_DST_PORT,
+
+} sai_dash_flow_enabled_key_t;
 
 #endif /* __SAITYPESEXTENSIONS_H_ */
 

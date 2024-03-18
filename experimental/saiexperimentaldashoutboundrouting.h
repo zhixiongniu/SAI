@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHOUTBOUNDROUTING_H_)
 #define __SAIEXPERIMENTALDASHOUTBOUNDROUTING_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_OUTBOUND_ROUTING SAI - Extension specific API definitions

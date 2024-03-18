@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHDIRECTIONLOOKUP_H_)
 #define __SAIEXPERIMENTALDASHDIRECTIONLOOKUP_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_DIRECTION_LOOKUP SAI - Extension specific API definitions

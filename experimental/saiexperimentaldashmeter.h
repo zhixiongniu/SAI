@@ -25,7 +25,7 @@
 #if !defined (__SAIEXPERIMENTALDASHMETER_H_)
 #define __SAIEXPERIMENTALDASHMETER_H_
 
-#include <saitypes.h>
+#include <saitypesextensions.h>
 
 /**
  * @defgroup SAIEXPERIMENTALDASH_METER SAI - Extension specific API definitions
