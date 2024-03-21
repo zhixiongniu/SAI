@@ -386,61 +386,6 @@ typedef enum _sai_flow_entry_attr_t
     SAI_FLOW_ENTRY_ATTR_FLOW_DATA_PB,
 
     /**
-     * @brief Bulk get filter operation
-     *
-     * @type sai_bulk_get_filter_op_t
-     * @flags READ_ONLY
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_FILTER_OP,
-
-    /**
-     * @brief Bulk get filter type
-     *
-     * @type sai_bulk_get_flow_entry_filter_key_t
-     * @flags READ_ONLY
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_FLOW_ENTRY_FILTER_KEY,
-
-    /**
-     * @brief Bulk get filter value as integer
-     *
-     * @type sai_uint64_t
-     * @flags READ_ONLY
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_FILTER_VALUE_INT,
-
-    /**
-     * @brief Bulk get filter value as IP
-     *
-     * @type sai_ip_address_t
-     * @flags READ_ONLY
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_FILTER_VALUE_IP,
-
-    /**
-     * @brief Bulk get target server
-     *
-     * @type sai_ip_address_t
-     * @flags READ_ONLY
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_TARGET_SERVER_IP,
-
-    /**
-     * @brief Bulk get target server
-     *
-     * @type sai_uint16_t
-     * @flags READ_ONLY
-     * @isvlan false
-     * @isresourcetype true
-     */
-    SAI_FLOW_ENTRY_ATTR_BULK_GET_TARGET_SERVER_PORT,
-
-    /**
      * @brief IP address family for resource accounting
      *
      * @type sai_ip_addr_family_t
@@ -463,35 +408,226 @@ typedef enum _sai_flow_entry_attr_t
 } sai_flow_entry_attr_t;
 
 /**
- * @brief Bulk Get Op filter keywords for flow_entry in get_flow_entries_attribute call
+ * @brief Attribute ID for dash_flow_flow_entry_bulk_get_session
  */
-typedef enum _sai_bulk_get_flow_entry_filter_key_t
+typedef enum _sai_flow_entry_bulk_get_session_attr_t
 {
-    /** Default value for bulk get filter key */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_INVAILD,
+    /**
+     * @brief Start of attributes
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_START,
 
-    /** Bulk get filter key word for sai_object_id_t flow_table_id */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_FLOW_TABLE_ID,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_KEY1
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_filter_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_KEY1 = SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_START,
 
-    /** Bulk get filter key word for sai_uint8_t ip_protocol */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_IP_PROTOCOL,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_OP1
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_op_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_OP1,
 
-    /** Bulk get filter key word for sai_ip_address_t src_ip_addr */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_SRC_IP_ADDR,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter INT_VALUE1
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_INT_VALUE1,
 
-    /** Bulk get filter key word for sai_ip_address_t dst_ip_addr */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_DST_IP_ADDR,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter IP_VALUE1
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_IP_VALUE1,
 
-    /** Bulk get filter key word for sai_uint16_t src_l4_port */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_SRC_L4_PORT,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_KEY2
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_filter_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_KEY2,
 
-    /** Bulk get filter key word for sai_uint16_t dst_l4_port */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_DST_L4_PORT,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_OP2
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_op_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_OP2,
 
-    /** Bulk get filter key word for SAI_FLOW_ENTRY_ATTR_VERSION */
-    SAI_BULK_GET_FLOW_ENTRY_FILTER_KEY_VERSION,
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter INT_VALUE2
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_INT_VALUE2,
 
-} sai_bulk_get_flow_entry_filter_key_t;
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter IP_VALUE2
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_IP_VALUE2,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_KEY3
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_filter_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_KEY3,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_OP3
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_op_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_OP3,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter INT_VALUE3
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_INT_VALUE3,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter IP_VALUE3
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_IP_VALUE3,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_KEY4
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_filter_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_KEY4,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_OP4
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_op_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_OP4,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter INT_VALUE4
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_INT_VALUE4,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter IP_VALUE4
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_IP_VALUE4,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_KEY5
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_filter_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_KEY5,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter FILTER_OP5
+     *
+     * @type sai_dash_flow_entry_bulk_get_session_op_key_t
+     * @flags CREATE_AND_SET
+     * @default SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_FILTER_OP5,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter INT_VALUE5
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_INT_VALUE5,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter IP_VALUE5
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_IP_VALUE5,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter BULK_GET_SESSION_IP
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_BULK_GET_SESSION_IP,
+
+    /**
+     * @brief Action set_flow_entry_bulk_get_session_attr parameter BULK_GET_SESSION_PORT
+     *
+     * @type sai_uint16_t
+     * @flags CREATE_AND_SET
+     * @isvlan false
+     * @default 0
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_BULK_GET_SESSION_PORT,
+
+    /**
+     * @brief End of attributes
+     */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_END,
+
+    /** Custom range base value */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /** End of custom range base */
+    SAI_FLOW_ENTRY_BULK_GET_SESSION_ATTR_CUSTOM_RANGE_END,
+
+} sai_flow_entry_bulk_get_session_attr_t;
 
 /**
  * @brief Create dash_flow_flow_table
@@ -666,22 +802,81 @@ typedef sai_status_t (*sai_bulk_get_flow_entry_fn)(
         _In_ sai_bulk_op_error_mode_t mode,
         _Out_ sai_status_t *object_statuses);
 
+/**
+ * @brief Create dash_flow_flow_entry_bulk_get_session
+ *
+ * @param[out] flow_entry_bulk_get_session_id Entry id
+ * @param[in] switch_id Switch id
+ * @param[in] attr_count Number of attributes
+ * @param[in] attr_list Array of attributes
+ *
+ * @return #SAI_STATUS_SUCCESS on success Failure status code on error
+ */
+typedef sai_status_t (*sai_create_flow_entry_bulk_get_session_fn)(
+        _Out_ sai_object_id_t *flow_entry_bulk_get_session_id,
+        _In_ sai_object_id_t switch_id,
+        _In_ uint32_t attr_count,
+        _In_ const sai_attribute_t *attr_list);
+
+/**
+ * @brief Remove dash_flow_flow_entry_bulk_get_session
+ *
+ * @param[in] flow_entry_bulk_get_session_id Entry id
+ *
+ * @return #SAI_STATUS_SUCCESS on success Failure status code on error
+ */
+typedef sai_status_t (*sai_remove_flow_entry_bulk_get_session_fn)(
+        _In_ sai_object_id_t flow_entry_bulk_get_session_id);
+
+/**
+ * @brief Set attribute for dash_flow_flow_entry_bulk_get_session
+ *
+ * @param[in] flow_entry_bulk_get_session_id Entry id
+ * @param[in] attr Attribute
+ *
+ * @return #SAI_STATUS_SUCCESS on success Failure status code on error
+ */
+typedef sai_status_t (*sai_set_flow_entry_bulk_get_session_attribute_fn)(
+        _In_ sai_object_id_t flow_entry_bulk_get_session_id,
+        _In_ const sai_attribute_t *attr);
+
+/**
+ * @brief Get attribute for dash_flow_flow_entry_bulk_get_session
+ *
+ * @param[in] flow_entry_bulk_get_session_id Entry id
+ * @param[in] attr_count Number of attributes
+ * @param[inout] attr_list Array of attributes
+ *
+ * @return #SAI_STATUS_SUCCESS on success Failure status code on error
+ */
+typedef sai_status_t (*sai_get_flow_entry_bulk_get_session_attribute_fn)(
+        _In_ sai_object_id_t flow_entry_bulk_get_session_id,
+        _In_ uint32_t attr_count,
+        _Inout_ sai_attribute_t *attr_list);
+
 typedef struct _sai_dash_flow_api_t
 {
-    sai_create_flow_table_fn           create_flow_table;
-    sai_remove_flow_table_fn           remove_flow_table;
-    sai_set_flow_table_attribute_fn    set_flow_table_attribute;
-    sai_get_flow_table_attribute_fn    get_flow_table_attribute;
-    sai_bulk_object_create_fn          create_flow_tables;
-    sai_bulk_object_remove_fn          remove_flow_tables;
+    sai_create_flow_table_fn                            create_flow_table;
+    sai_remove_flow_table_fn                            remove_flow_table;
+    sai_set_flow_table_attribute_fn                     set_flow_table_attribute;
+    sai_get_flow_table_attribute_fn                     get_flow_table_attribute;
+    sai_bulk_object_create_fn                           create_flow_tables;
+    sai_bulk_object_remove_fn                           remove_flow_tables;
 
-    sai_create_flow_entry_fn           create_flow_entry;
-    sai_remove_flow_entry_fn           remove_flow_entry;
-    sai_set_flow_entry_attribute_fn    set_flow_entry_attribute;
-    sai_get_flow_entry_attribute_fn    get_flow_entry_attribute;
-    sai_bulk_create_flow_entry_fn      create_flow_entries;
-    sai_bulk_remove_flow_entry_fn      remove_flow_entries;
-    sai_bulk_get_flow_entry_fn         get_flow_entries_attribute;
+    sai_create_flow_entry_fn                            create_flow_entry;
+    sai_remove_flow_entry_fn                            remove_flow_entry;
+    sai_set_flow_entry_attribute_fn                     set_flow_entry_attribute;
+    sai_get_flow_entry_attribute_fn                     get_flow_entry_attribute;
+    sai_bulk_create_flow_entry_fn                       create_flow_entries;
+    sai_bulk_remove_flow_entry_fn                       remove_flow_entries;
+    sai_bulk_get_flow_entry_fn                          get_flow_entries_attribute;
+
+    sai_create_flow_entry_bulk_get_session_fn           create_flow_entry_bulk_get_session;
+    sai_remove_flow_entry_bulk_get_session_fn           remove_flow_entry_bulk_get_session;
+    sai_set_flow_entry_bulk_get_session_attribute_fn    set_flow_entry_bulk_get_session_attribute;
+    sai_get_flow_entry_bulk_get_session_attribute_fn    get_flow_entry_bulk_get_session_attribute;
+    sai_bulk_object_create_fn                           create_flow_entry_bulk_get_sessions;
+    sai_bulk_object_remove_fn                           remove_flow_entry_bulk_get_sessions;
 
 } sai_dash_flow_api_t;
 

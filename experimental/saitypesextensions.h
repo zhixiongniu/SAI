@@ -74,6 +74,8 @@ typedef enum _sai_object_type_extensions_t
 
     SAI_OBJECT_TYPE_FLOW_ENTRY,
 
+    SAI_OBJECT_TYPE_FLOW_ENTRY_BULK_GET_SESSION,
+
     /* Add new experimental object types above this line */
 
     SAI_OBJECT_TYPE_EXTENSIONS_RANGE_END
@@ -100,40 +102,13 @@ typedef enum _sai_dash_encapsulation_t
 
 } sai_dash_encapsulation_t;
 
-typedef enum _sai_bulk_get_filter_op_t
-{
-    /** Operation to compare the value is equal */
-    SAI_BULK_GET_FILTER_OP_EQUAL_TO,
-
-    /** Operation to compare the value is greater than */
-    SAI_BULK_GET_FILTER_OP_GREATER_THAN,
-
-    /** Operation to compare the value is greater than or equal to */
-    SAI_BULK_GET_FILTER_OP_GREATER_THAN_OR_EQUAL_TO,
-
-    /** Operation to compare the value is less than */
-    SAI_BULK_GET_FILTER_OP_LESS_THAN,
-
-    /** Operation to compare the value is less than or equal to */
-    SAI_BULK_GET_FILTER_OP_LESS_THAN_OR_EQUAL_TO,
-
-} sai_bulk_get_filter_op_t;
-
 typedef enum _sai_dash_tunnel_dscp_mode_t
 {
-    SAI_DASH_TUNNEL_DSCP_MODE_INVALID,
-
     SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL,
 
     SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL,
 
 } sai_dash_tunnel_dscp_mode_t;
-
-typedef enum _sai_dash_flow_action_t
-{
-    SAI_DASH_FLOW_ACTION_NONE,
-
-} sai_dash_flow_action_t;
 
 typedef enum _sai_dash_flow_enabled_key_t
 {
@@ -150,6 +125,48 @@ typedef enum _sai_dash_flow_enabled_key_t
     SAI_DASH_FLOW_ENABLED_KEY_DST_PORT,
 
 } sai_dash_flow_enabled_key_t;
+
+typedef enum _sai_dash_flow_entry_bulk_get_session_filter_key_t
+{
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_FLOW_TABLE_ID,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_IP_PROTOCOL,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_SRC_IP_ADDR,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_DST_IP_ADDR,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_SRC_L4_PORT,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_DST_L4_PORT,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_KEY_VERSION,
+
+} sai_dash_flow_entry_bulk_get_session_filter_key_t;
+
+typedef enum _sai_dash_flow_entry_bulk_get_session_op_key_t
+{
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_INVALID,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_EQUAL_TO,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_GREATER_THAN,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_GREATER_THAN_OR_EQUAL_TO,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_LESS_THAN,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_LESS_THAN_OR_EQUAL_TO,
+
+} sai_dash_flow_entry_bulk_get_session_op_key_t;
+
+typedef enum _sai_dash_flow_action_t
+{
+    SAI_DASH_FLOW_ACTION_NONE,
+
+} sai_dash_flow_action_t;
 
 #endif /* __SAITYPESEXTENSIONS_H_ */
 

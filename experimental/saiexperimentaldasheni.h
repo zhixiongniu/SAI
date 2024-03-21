@@ -226,7 +226,7 @@ typedef enum _sai_eni_attr_t
      *
      * @type sai_dash_tunnel_dscp_mode_t
      * @flags CREATE_AND_SET
-     * @default SAI_DASH_TUNNEL_DSCP_MODE_INVALID
+     * @default SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL
      */
     SAI_ENI_ATTR_DASH_TUNNEL_DSCP_MODE,
 
@@ -236,6 +236,7 @@ typedef enum _sai_eni_attr_t
      * @type sai_uint8_t
      * @flags CREATE_AND_SET
      * @default 0
+     * @validonly SAI_ENI_ATTR_DASH_TUNNEL_DSCP_MODE == SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL
      */
     SAI_ENI_ATTR_DSCP,
 
