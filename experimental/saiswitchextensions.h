@@ -37,6 +37,8 @@ typedef enum _sai_switch_attr_extensions_t
 {
     SAI_SWITCH_ATTR_EXTENSIONS_RANGE_START = SAI_SWITCH_ATTR_END,
 
+    SAI_SWITCH_ATTR_DASH_CAPS_MAX_HA_SET_COUNT	
+
     SAI_SWITCH_ATTR_EXTENSIONS_RANGE_END
 
 } sai_switch_attr_extensions_t;

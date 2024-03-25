@@ -74,6 +74,8 @@ typedef enum _sai_object_type_extensions_t
 
     SAI_OBJECT_TYPE_FLOW_ENTRY,
 
+    SAI_OBJECT_TYPE_FLOW_ENTRY_BULK_GET_SESSION_FILTER,
+
     SAI_OBJECT_TYPE_FLOW_ENTRY_BULK_GET_SESSION,
 
     /* Add new experimental object types above this line */
@@ -102,17 +104,11 @@ typedef enum _sai_dash_encapsulation_t
 
 } sai_dash_encapsulation_t;
 
-typedef enum _sai_dash_tunnel_dscp_mode_t
-{
-    SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL,
-
-    SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL,
-
-} sai_dash_tunnel_dscp_mode_t;
-
 typedef enum _sai_dash_flow_enabled_key_t
 {
     SAI_DASH_FLOW_ENABLED_KEY_NONE,
+
+    SAI_DASH_FLOW_ENABLED_KEY_ENI_ADDR,
 
     SAI_DASH_FLOW_ENABLED_KEY_PROTOCOL,
 
@@ -131,6 +127,8 @@ typedef enum _sai_dash_flow_entry_bulk_get_session_filter_key_t
     SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_INVAILD,
 
     SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_FLOW_TABLE_ID,
+
+    SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_ENI_ADDR,
 
     SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_FILTER_KEY_IP_PROTOCOL,
 
@@ -161,6 +159,14 @@ typedef enum _sai_dash_flow_entry_bulk_get_session_op_key_t
     SAI_DASH_FLOW_ENTRY_BULK_GET_SESSION_OP_KEY_FILTER_OP_LESS_THAN_OR_EQUAL_TO,
 
 } sai_dash_flow_entry_bulk_get_session_op_key_t;
+
+typedef enum _sai_dash_tunnel_dscp_mode_t
+{
+    SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL,
+
+    SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL,
+
+} sai_dash_tunnel_dscp_mode_t;
 
 typedef enum _sai_dash_flow_action_t
 {
